@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import CameraFeed from "../components/camera_feed";
-import Alerts from "../components/alerts";
-import MapView from "../components/mapview";
+import CameraFeed from "./components/camera_feed"; // ✅ Fixed
+import Alerts from "./components/alerts"; // ✅ Fixed
+import MapView from "./components/mapview"; // ✅ Fixed
 
 function App() {
   return (
