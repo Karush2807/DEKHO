@@ -1,2 +1,2 @@
 # DEKHO
-DEKHO leverages advanced vision-based technologies, including face emotion analytics, recognition, and automated blurring systems, while utilizing Indian driving datasets to detect vehicles, poles, sidewalks, and more, fostering a community-driven dataset for enhanced accessibility.
+This project builds an AI-powered system to track and geolocate individuals across multiple CCTV cameras in real time. Using YOLOv8 for detection, DeepSORT for tracking, and OSNet for Re-ID, it identifies suspects and maps their movements on a live dashboard (React + Leaflet.js). The system helps in criminal investigations, urban surveillance, and public safety monitoring by providing accurate, real-time location tracking. 🚔📍
