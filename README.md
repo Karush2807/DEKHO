@@ -1,7 +1,7 @@
 ```markdown
 # 🚦 AI-Powered Adaptive Traffic Signal System
 
-## 📌 Overview
+## 📌 Overvie
 The **AI-Powered Adaptive Traffic Signal System** dynamically adjusts traffic signals based on real-time traffic conditions using **YOLOv8, OpenCV, and Reinforcement Learning (RL)**. This system prioritizes emergency vehicles, optimizes signal timing, and improves urban traffic flow.
 
 ## 🎯 Features
