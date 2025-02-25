@@ -1,128 +1,145 @@
-# **🔍 Criminal Tracking & Geolocation Using CCTV 🎥🚨**  
+```markdown
+# 🚦 AI-Powered Adaptive Traffic Signal System
 
-## **🚀 Overview**  
-This project is an **AI-powered real-time tracking system** that detects and tracks individuals across multiple CCTV cameras, **mapping their real-world locations** using **homography-based geolocation**.  
+## 📌 Overview
+The **AI-Powered Adaptive Traffic Signal System** dynamically adjusts traffic signals based on real-time traffic conditions using **YOLOv8, OpenCV, and Reinforcement Learning (RL)**. This system prioritizes emergency vehicles, optimizes signal timing, and improves urban traffic flow.
 
-✅ **Law enforcement** can use it to **track criminals**  
-✅ **Urban authorities** can analyze **pedestrian movement**  
-✅ **Industries** can **monitor worker safety compliance**  
-
-### **Key Features:**  
-- 🏃‍♂️ **Real-time person detection & tracking** (YOLOv8 + DeepSORT)  
-- 🌍 **Geolocation mapping** from CCTV pixels → real-world coordinates  
-- 🚨 **Automated alert system** for restricted areas & unauthorized access  
-- 📡 **Multi-camera support** with homography-based tracking  
-- 📊 **Live dashboard for visualization** (Streamlit + Leaflet.js)  
+## 🎯 Features
+- **Real-Time Traffic Monitoring**: Uses CCTV cameras to detect vehicles and analyze congestion.
+- **Adaptive Signal Control**: Dynamically adjusts signal durations based on real-time traffic data.
+- **Emergency Vehicle Prioritization**: Identifies ambulances, fire trucks, and police vehicles for faster passage.
+- **Reinforcement Learning-Based Optimization**: Continuously learns to improve signal efficiency.
+- **Manual Override System**: Allows admin users to manually control signals via a dashboard.
+- **Web-Based Dashboard**: Displays real-time traffic data and allows administrators to adjust settings.
 
 ---
 
-## **🛠️ Tech Stack**  
-🔹 **Deep Learning:** YOLOv8 (Object Detection) + DeepSORT (Tracking)  
-🔹 **Computer Vision:** OpenCV, Homography Mapping  
-🔹 **Backend:** FastAPI (for API-based tracking system)  
-🔹 **Frontend:** Streamlit + Leaflet.js (for live tracking visualization)  
-🔹 **Database:** Firebase / PostgreSQL (for storing movement logs)  
-
----
-## **🗂️ Folder Structure**  
+## 🏗️ Folder Structure
 ```
-📦 Criminal-Tracking-CCTV
-│-- 📂 backend/               # Backend services
-│   │-- 📂 api/               # API endpoints
-│   │   │-- auth.py           # Authentication module
-│   │   │-- main.py           # Main API entry point
-│   │   │-- tracking.py       # Tracking API
-│   │-- 📂 database/          # Database management
-│   │   │-- db.py             # Database connection
-│   │   │-- models.py         # Data models
-│   │-- 📂 models/            # AI/ML models
-│   │   │-- 📂 deepsort/       # DeepSORT tracking model
-│   │   │-- 📂 reid/          # Re-identification model
-│   │   │-- 📂 yolov5/        # YOLOv5 detection model
-│   │-- 📂 utils/             # Utility functions
-│   │   │-- alert_system.py   # Alert & notification system
-│   │   │-- camera_system.py  # CCTV/Webcam feed management
-│   │   │-- detect_tracking.py# YOLOv8 + DeepSORT for tracking
-│   │   │-- homography.py     # Homography mapping for geolocation
-│-- 📂 frontend/              # Frontend visualization (Streamlit)
-│-- .env                     # Environment variables
-│-- .gitignore               # Git ignore file
-│-- config.py                # Configuration settings
-│-- docker-compose.yml       # Docker setup
-│-- README.md                # Project Documentation
-│-- requirements.txt         # Dependencies
+adaptive-traffic-signal-system/
+├── backend/                # Backend (FastAPI/Flask)
+│   ├── api/                # API endpoints
+│   │   ├── traffic_control.py  # Signal adjustment logic
+│   │   ├── emergency_detect.py # Emergency vehicle detection
+│   │   └── rl_model.py         # Reinforcement learning logic
+│   ├── models/             # ML models and training scripts
+│   │   ├── yolo_model.py       # YOLOv8 vehicle detection
+│   │   ├── rl_train.py         # Reinforcement learning training script
+│   │   └── homography.py       # Homography transformation script
+│   ├── utils/              # Helper functions
+│   ├── main.py             # Entry point for FastAPI/Flask
+│   └── requirements.txt    # Dependencies for backend
+├── frontend/               # React.js Frontend
+│   ├── src/
+│   │   ├── components/     # UI components
+│   │   ├── pages/          # Page views
+│   │   ├── utils/          # Helper functions
+│   │   ├── App.jsx         # Main React component
+│   │   └── index.js        # React entry point
+│   ├── package.json        # Frontend dependencies
+├── data/                   # Data storage & logs
+├── simulations/            # Traffic simulations
+├── tests/                  # Unit & integration tests
+├── .gitignore              # Ignore unnecessary files
+├── README.md               # Project documentation
+└── docker-compose.yml      # Docker setup for deployment
 ```
 
 ---
 
-## **🚀 How It Works**  
+##🚀 Getting Started
 
-### **📌 Step 1: Capture CCTV Footage 🎥**  
-📍 Uses **IP Cameras / Webcams / RTSP Streams** as input.  
-```bash
-python camera_system.py
+### **1️⃣Prerequisites**
+Ensure you have the following installed:
+- **Python 3.9+** (For backend & AI models)
+- **Node.js 18+** (For frontend)
+- **Docker (Optional)** (For containerized deployment)
+
+### **2️⃣Backend Setup**
+#### **🔹Install Dependencies**
+```sh
+cd backend
+pip install -r requirements.txt
 ```
 
-### **📌 Step 2: Detect & Track Individuals 🏃‍♂️**  
-📍 Runs **YOLOv8** for person detection & **DeepSORT** for tracking.  
-```bash
-python detect_tracking.py
+#### **🔹 Run Backend Server**
+```sh
+uvicorn main:app --reload
 ```
 
-### **📌 Step 3: Convert to Real-World Coordinates 🌍**  
-📍 Maps CCTV pixels to **geolocation** using **homography transformation**.  
-```bash
-python homography.py
+### **3️⃣ Frontend Setup**
+#### **🔹 Install Dependencies**
+```sh
+cd frontend
+npm install
 ```
 
-### **📌 Step 4: Trigger Alerts 🚨**  
-📍 Detects unauthorized individuals & sends alerts.  
-```bash
-python alert_system.py
+#### **🔹 Run Frontend Server**
+```sh
+npm run dev
 ```
-
-### **📌 Step 5: Live Tracking Dashboard 📊**  
-📍 Visualizes movements on an **interactive map**.  
-```bash
-streamlit run dashboard.py
-```
+Frontend will run on **`http://localhost:5173`**.
 
 ---
 
-## **⚡ Live Demo Setup**  
-🚀 **Don’t have CCTV? No problem!**  
-**Use a webcam as an alternative:**  
-```bash
-python main.py --camera 0
+## 🧠 How It Works
+### **🔍 Step 1: Vehicle Detection**
+- Uses **YOLOv8 & OpenCV** to detect vehicles from CCTV camera feeds.
+
+### **🚦 Step 2: Traffic Signal Adjustment**
+- Dynamically adjusts signal durations based on real-time congestion.
+- Uses **reinforcement learning** to improve over time.
+
+### **🚑 Step 3: Emergency Vehicle Prioritization**
+- Recognizes emergency vehicles using **RFID & Computer Vision**.
+- Clears their path by adjusting traffic signals accordingly.
+
+### **🖥️ Step 4: Web Dashboard**
+- Displays live traffic data.
+- Allows manual override for signal control.
+
+---
+
+## 🔗 API Endpoints
+| Method | Endpoint            | Description |
+|--------|---------------------|-------------|
+| `GET`  | `/api/traffic-status` | Fetch current traffic conditions |
+| `POST` | `/api/update-signal`  | Manually update traffic signal |
+| `GET`  | `/api/live-stream`    | Fetch live camera feed |
+
+---
+
+## 🌍 Future Enhancements
+- **🚀 AI-Powered Traffic Prediction**: Predict congestion trends.
+- **📡 IoT Integration**: Use sensors for additional data collection.
+- **🗺️ Google Maps API Integration**: Fetch real-time traffic data.
+- **📊 Historical Data Analysis**: Store and analyze past traffic trends.
+
+---
+
+## 💡 Contributing
+Contributions are welcome! Feel free to **fork** the repo, create a new branch, and submit a **pull request**.
+
+---
+
+## 🛠 Tech Stack
+- **Frontend**: React.js, Tailwind CSS
+- **Backend**: FastAPI / Flask, Python
+- **Machine Learning**: YOLOv8, OpenCV, Reinforcement Learning
+- **Database**: Firebase / PostgreSQL
+- **Deployment**: Docker, Nginx
+
+---
+
+## 📜 License
+This project is **open-source** under the **MIT License**.
+
+---
+
+## 💬 Contact
+For any questions or collaboration, feel free to reach out to:
+- **📧 Email**: your.email@example.com
+- **💬 Discord**: YourDiscordHandle
+
+🚦 **Smarter Traffic, Smoother Cities!** 🌆✨
 ```
-📍 **To simulate a real CCTV environment, use:**  
-```bash
-python main.py --camera "rtsp://your-cctv-url"
-```
-
----
-
-## **🔗 Future Improvements**  
-✅ **Multi-camera synchronization** across different locations  
-✅ **Advanced re-identification models** for better tracking across angles  
-✅ **Integration with law enforcement databases**  
-
----
-
-## **👨‍💻 Team & Contributors**  
-💡 **Project Lead:** *Your Name*  
-🤖 **AI/ML Engineer:** *Your Name*  
-🌍 **Computer Vision Expert:** *Your Name*  
-
----
-
-## **📜 License**  
-This project is **open-source** under the **MIT License**.  
-
----
-
-## **⭐ Hackathon Checklist**  
-✅ **Clear problem statement**  
-✅ **Live demo-ready prototype**  
-✅ **Optimized real-time performance**  
-✅ **Well-documented code & workflow**  
