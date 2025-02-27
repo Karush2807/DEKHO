@@ -21,7 +21,7 @@ class VehicleCounter:
         tracks = self.tracker.update(filtered_detections, frame)
         
         self._update_counts(results)
-        return results
+        return tracks #returning the tracked objects
     
     def _update_counts(self, results):
         self.counts={cls: 0 for cls in self.allowed_class_ids.keys()}

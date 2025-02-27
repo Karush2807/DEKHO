@@ -49,17 +49,18 @@ def main():
         
         # 2. Display counts
         cv2.putText(frame, f"Northbound: {line_counter.counts['north']}", 
-                   (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+                    (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
         cv2.putText(frame, f"Southbound: {line_counter.counts['south']}", 
-                   (20, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+                    (20, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
         
         # 3. Show tracking information
         for track in tracks:
-            if track.shape[0]>=6:
-                x1, y1, x2, y2, track_id, _ = track.astype(int)
-                cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
-                cv2.putText(frame, f"ID: {track_id}", (x1, y1-10),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+            #extracting only the required information
+            x1, x2, y1, y2, track_id = track[0:5].astype(int)
+            class_id=int(track[6]) if len(track)>6 else 0
+
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            cv2.putText(frame, f"ID: {track_id}", (x1, y1-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
         
         # 4. Show FPS
         fps = cap.get(cv2.CAP_PROP_FPS)
